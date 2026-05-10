@@ -36,7 +36,8 @@ jobs:
       # env.SHORT_SHA: 刚刚获取的 7 位 commit 标识 (例如 a1b2c3d)
       - name: Rename APK
         run: |
-          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OneUIX-Debug-${{ github.ref_name }}-Run${{ github.run_number }}-${{ env.SHORT_SHA }}.apk
+          SAFE_BRANCH_NAME=$(echo "${{ github.ref_name }}" | tr '/' '-')
+          mv app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/OneUIX-Debug-${SAFE_BRANCH_NAME}-Run${{ github.run_number }}-${{ env.SHORT_SHA }}.apk"
 
       # 上传产物
       - name: Upload APK
