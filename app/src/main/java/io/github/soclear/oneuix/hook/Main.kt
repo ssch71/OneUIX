@@ -8,6 +8,7 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResou
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 import io.github.soclear.oneuix.BuildConfig
 import io.github.soclear.oneuix.data.Package
+import io.github.soclear.oneuix.hook.systemui.ESIM
 import io.github.soclear.oneuix.hook.systemui.powermenu.PowerMenu
 import io.github.soclear.oneuix.hook.util.PreferenceProvider
 import io.github.soclear.oneuix.hook.util.addAssetPath
@@ -255,7 +256,7 @@ class Main : IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHoo
                 }
 
                 if (preference.systemUI.statusBar.physicalEsimAdapterWorkaround) {
-                    SystemUI.workaroundPhysicalEsimAdapter(
+                    ESIM.workaroundPhysicalEsimAdapter(
                         lpparam,
                         preference.systemUI.statusBar.physicalEsimAdapterSimSlot
                     )
