@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.os.SystemClock
+import android.os.SystemProperties
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -24,6 +25,7 @@ import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XC_MethodReplacement.returnConstant
 import de.robv.android.xposed.XposedBridge
+import de.robv.android.xposed.XposedBridge.hookAllConstructors
 import de.robv.android.xposed.XposedBridge.hookAllMethods
 import de.robv.android.xposed.XposedHelpers.callMethod
 import de.robv.android.xposed.XposedHelpers.callStaticMethod
@@ -720,6 +722,44 @@ object SystemUI {
             max < 0 ||
             Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM
         ) return
+
+        val oneUiOwnVersion = SystemProperties.getInt("ro.build.version.oneui", 0)
+        if (oneUiOwnVersion >= 80500) {
+            try {
+                findAndHookMethod(
+                    "com.android.systemui.statusbar.phone.NotificationIconContainer",
+                    loadPackageParam.classLoader,
+                    "shouldForceOverflow",
+                    Int::class.javaPrimitiveType,
+                    Float::class.javaPrimitiveType,
+                    Int::class.javaPrimitiveType,
+                    object : XC_MethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam) {
+                            param.args[2] = max
+                        }
+                    }
+                )
+            } catch (t: Throwable) {
+                XposedBridge.log(t)
+            }
+
+            try {
+                hookAllConstructors(
+                    findClass(
+                        "com.android.systemui.statusbar.notification.icon.ui.viewmodel.NotificationIconContainerStatusBarViewModel",
+                        loadPackageParam.classLoader
+                    ),
+                    object : XC_MethodHook() {
+                        override fun afterHookedMethod(param: MethodHookParam) {
+                            setIntField(param.thisObject, "maxIcons", Int.MAX_VALUE)
+                        }
+                    }
+                )
+            } catch (t: Throwable) {
+                XposedBridge.log(t)
+            }
+            return
+        }
         try {
             findAndHookMethod(
                 "com.android.systemui.statusbar.phone.NotificationIconContainer",
