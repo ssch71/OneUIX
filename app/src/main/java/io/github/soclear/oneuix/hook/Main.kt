@@ -252,6 +252,14 @@ class Main : IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHoo
                     HideBatteryIconHook.apply(lpparam)
                 }
 
+                if (preference.systemUI.statusBar.addBatteryLevelText) {
+                    SystemUI.addBatteryLevelText(
+                        lpparam,
+                        preference.systemUI.statusBar.hideBatteryLevelTextPercentageSign,
+                        preference.systemUI.statusBar.hideBatteryLevelTextChargingIcon,
+                    )
+                }
+
                 if (preference.systemUI.statusBar.supportRealTimeNetworkSpeed) {
                     Network.supportRealTimeNetworkSpeed(lpparam)
                 }

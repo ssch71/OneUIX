@@ -1208,4 +1208,72 @@ object SystemUI {
             XposedBridge.log(t)
         }
     }
+
+    fun addBatteryLevelText(
+        loadPackageParam: LoadPackageParam,
+        hidePercentSign: Boolean,
+        hideChargingIcon: Boolean,
+    ) {
+        if (loadPackageParam.packageName != Package.SYSTEMUI || ONE_UI_VERSION < 70000) return
+        val batteryMeterViewClass = findClassIfExists(
+            "com.android.systemui.battery.BatteryMeterView",
+            loadPackageParam.classLoader
+        ) ?: return
+
+        val viewId = View.generateViewId()
+
+        try {
+            findAndHookMethod(
+                batteryMeterViewClass,
+                "scaleBatteryMeterViewsLegacy",
+                object : XC_MethodHook() {
+                    @SuppressLint("SetTextI18n")
+                    override fun afterHookedMethod(param: MethodHookParam) {
+                        try {
+                            val batteryMeterView = param.thisObject as ViewGroup
+                            var textView = batteryMeterView.findViewById<TextView>(viewId)
+                            if (textView == null) {
+                                textView = TextView(batteryMeterView.context).apply {
+                                    id = viewId
+                                    gravity = Gravity.CENTER
+                                }
+                                batteryMeterView.addView(
+                                    textView, LinearLayout.LayoutParams(
+                                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                                        ViewGroup.LayoutParams.WRAP_CONTENT
+                                    )
+                                )
+                            }
+                            val level = getIntField(batteryMeterView, "mLevel")
+                            val percent = if (hidePercentSign) "$level" else "$level%"
+                            val isCharging = callMethod(batteryMeterView, "isCharging") as Boolean
+                            val suffix = if (isCharging && !hideChargingIcon) "\u26A1\uFE0E" else ""
+                            textView.text = "$percent$suffix"
+                            textView.setTextColor(getIntField(batteryMeterView, "mTextColor"))
+                        } catch (t: Throwable) {
+                            XposedBridge.log(t)
+                        }
+                    }
+                }
+            )
+        } catch (t: Throwable) {
+            XposedBridge.log(t)
+        }
+
+        try {
+            hookAllMethods(batteryMeterViewClass, "updateColors", object : XC_MethodHook() {
+                override fun afterHookedMethod(param: MethodHookParam) {
+                    try {
+                        val view = param.thisObject as ViewGroup
+                        val textView = view.findViewById<TextView>(viewId) ?: return
+                        textView.setTextColor(getIntField(view, "mTextColor"))
+                    } catch (t: Throwable) {
+                        XposedBridge.log(t)
+                    }
+                }
+            })
+        } catch (t: Throwable) {
+            XposedBridge.log(t)
+        }
+    }
 }

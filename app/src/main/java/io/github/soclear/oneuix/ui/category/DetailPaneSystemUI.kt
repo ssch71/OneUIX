@@ -237,6 +237,37 @@ fun DetailPaneSystemUI(
                 onEvent(SystemUIEvent.StatusBar.HideBatteryIcon(it))
             }
         )
+        if (ONE_UI_VERSION >= 70000) {
+            SwitchItem(
+                icon = ImageVector.vectorResource(id = R.drawable.battery),
+                title = stringResource(id = R.string.addBatteryLevelText_title),
+                summary = stringResource(id = R.string.addBatteryLevelText_summary),
+                checked = uiState.statusBar.addBatteryLevelText,
+                onCheckedChange = {
+                    onEvent(SystemUIEvent.StatusBar.AddBatteryLevelText(it))
+                }
+            )
+            AnimatedVisibility(uiState.statusBar.addBatteryLevelText) {
+                Column {
+                    SwitchItem(
+                        icon = ImageVector.vectorResource(id = R.drawable.battery),
+                        title = stringResource(id = R.string.hideBatteryLevelTextPercentageSign_title),
+                        checked = uiState.statusBar.hideBatteryLevelTextPercentageSign,
+                        onCheckedChange = {
+                            onEvent(SystemUIEvent.StatusBar.HideBatteryLevelTextPercentageSign(it))
+                        }
+                    )
+                    SwitchItem(
+                        icon = ImageVector.vectorResource(id = R.drawable.battery),
+                        title = stringResource(id = R.string.hideBatteryLevelTextChargingIcon_title),
+                        checked = uiState.statusBar.hideBatteryLevelTextChargingIcon,
+                        onCheckedChange = {
+                            onEvent(SystemUIEvent.StatusBar.HideBatteryLevelTextChargingIcon(it))
+                        }
+                    )
+                }
+            }
+        }
         SwitchItem(
             icon = ImageVector.vectorResource(id = R.drawable.net_speed),
             title = stringResource(id = R.string.supportRealTimeNetworkSpeed_title),
@@ -835,6 +866,15 @@ sealed interface SystemUIEvent {
         value class HideBatteryIcon(val value: Boolean) : StatusBar
 
         @JvmInline
+        value class AddBatteryLevelText(val value: Boolean) : StatusBar
+
+        @JvmInline
+        value class HideBatteryLevelTextPercentageSign(val value: Boolean) : StatusBar
+
+        @JvmInline
+        value class HideBatteryLevelTextChargingIcon(val value: Boolean) : StatusBar
+
+        @JvmInline
         value class SupportRealTimeNetworkSpeed(val value: Boolean) : StatusBar
 
         @JvmInline
@@ -1067,6 +1107,36 @@ private fun SettingViewModel.onStatusBarEvent(event: SystemUIEvent.StatusBar) {
                     systemUI = preference.systemUI.copy(
                         statusBar = preference.systemUI.statusBar.copy(
                             hideBatteryIcon = event.value
+                        )
+                    )
+                )
+            }
+
+            is SystemUIEvent.StatusBar.AddBatteryLevelText -> {
+                preference.copy(
+                    systemUI = preference.systemUI.copy(
+                        statusBar = preference.systemUI.statusBar.copy(
+                            addBatteryLevelText = event.value
+                        )
+                    )
+                )
+            }
+
+            is SystemUIEvent.StatusBar.HideBatteryLevelTextPercentageSign -> {
+                preference.copy(
+                    systemUI = preference.systemUI.copy(
+                        statusBar = preference.systemUI.statusBar.copy(
+                            hideBatteryLevelTextPercentageSign = event.value
+                        )
+                    )
+                )
+            }
+
+            is SystemUIEvent.StatusBar.HideBatteryLevelTextChargingIcon -> {
+                preference.copy(
+                    systemUI = preference.systemUI.copy(
+                        statusBar = preference.systemUI.statusBar.copy(
+                            hideBatteryLevelTextChargingIcon = event.value
                         )
                     )
                 )
