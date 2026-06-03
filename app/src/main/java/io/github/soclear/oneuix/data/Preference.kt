@@ -88,6 +88,7 @@ data class Preference(
             val customPowerMenu: Boolean = false,
             val powerMenuActions: List<PowerMenuAction> =
                 PowerMenuAction.defaultPreferences(),
+            val disableNotificationGrouping: Boolean = false,
         )
     }
 

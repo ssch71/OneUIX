@@ -57,6 +57,8 @@
     <string name="supportAllCameraMenu_summary">Shutter sound, Auto HDR, Log, Frame watermark</string>
     <string name="disableCameraTemperatureCheck_title">Disable camera temperature check</string>
     <string name="disableScreenshotCaptureSound_title">Disable screenshot sound</string>
+    <string name="disableNotificationGrouping_title">Disable notification grouping</string>
+    <string name="disableNotificationGrouping_summary">Prevent status bar icon merging and notification center grouping for same-app notifications</string>
     <string name="customPowerMenu_title">Customize power menu actions</string>
     <string name="powerMenuActionVisible_summary">Visible, position %1$d</string>
     <string name="powerMenuActionHidden_summary">Hidden</string>

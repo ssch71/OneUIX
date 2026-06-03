@@ -369,6 +369,9 @@ class Main : IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHoo
                 if (preference.systemUI.other.disableScreenshotCaptureSound) {
                     SystemUI.disableScreenshotCaptureSound(lpparam)
                 }
+                if (preference.systemUI.other.disableNotificationGrouping) {
+                    SystemUI.disableNotificationGrouping(lpparam)
+                }
                 if (preference.systemUI.other.customPowerMenu) {
                     addAssetPath(modulePath)
                     PowerMenu.hookPowerMenuActions(

@@ -698,6 +698,15 @@ fun DetailPaneSystemUI(
                 onEvent(SystemUIEvent.Other.DisableScreenshotCaptureSound(it))
             }
         )
+        SwitchItem(
+            icon = ImageVector.vectorResource(id = R.drawable.notifications),
+            title = stringResource(id = R.string.disableNotificationGrouping_title),
+            summary = stringResource(id = R.string.disableNotificationGrouping_summary),
+            checked = uiState.other.disableNotificationGrouping,
+            onCheckedChange = {
+                onEvent(SystemUIEvent.Other.DisableNotificationGrouping(it))
+            }
+        )
     }
 }
 
@@ -935,6 +944,9 @@ sealed interface SystemUIEvent {
 
         @JvmInline
         value class DisableScreenshotCaptureSound(val value: Boolean) : Other
+
+        @JvmInline
+        value class DisableNotificationGrouping(val value: Boolean) : Other
     }
 }
 
@@ -1417,6 +1429,16 @@ private fun SettingViewModel.onOtherEvent(event: SystemUIEvent.Other) {
                     systemUI = preference.systemUI.copy(
                         other = preference.systemUI.other.copy(
                             disableScreenshotCaptureSound = event.value
+                        )
+                    )
+                )
+            }
+
+            is SystemUIEvent.Other.DisableNotificationGrouping -> {
+                preference.copy(
+                    systemUI = preference.systemUI.copy(
+                        other = preference.systemUI.other.copy(
+                            disableNotificationGrouping = event.value
                         )
                     )
                 )

@@ -57,6 +57,8 @@
     <string name="supportAllCameraMenu_summary">Звук затвора, Auto HDR, Log, Рамка-водяной знак</string>
     <string name="disableCameraTemperatureCheck_title">Отключить проверку температуры камеры</string>
     <string name="disableScreenshotCaptureSound_title">Отключить звук скриншота</string>
+    <string name="disableNotificationGrouping_title">Отключить группировку уведомлений</string>
+    <string name="disableNotificationGrouping_summary">Запретить объединение значков в строке состояния и группировку в центре уведомлений для уведомлений одного приложения</string>
     <string name="customPowerMenu_title">Настроить действия меню питания</string>
     <string name="powerMenuActionVisible_summary">Показано, позиция %1$d</string>
     <string name="powerMenuActionHidden_summary">Скрыто</string>

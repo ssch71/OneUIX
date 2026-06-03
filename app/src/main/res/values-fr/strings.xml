@@ -57,6 +57,8 @@
     <string name="supportAllCameraMenu_summary">Son de l\'obturateur, Auto HDR, Log, Filigrane avec cadre</string>
     <string name="disableCameraTemperatureCheck_title">Désactiver la vérification de surchauffe de l\'appareil photo</string>
     <string name="disableScreenshotCaptureSound_title">Désactiver le son des captures d\'écran</string>
+    <string name="disableNotificationGrouping_title">Désactiver le regroupement des notifications</string>
+    <string name="disableNotificationGrouping_summary">Empêcher la fusion des icônes dans la barre d\'état et le regroupement dans le centre de notifications pour les notifications d\'une même application</string>
     <string name="customPowerMenu_title">Personnaliser les actions du menu d\'alimentation</string>
     <string name="powerMenuActionVisible_summary">Visible, position %1$d</string>
     <string name="powerMenuActionHidden_summary">Masqué</string>

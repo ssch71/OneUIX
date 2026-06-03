@@ -1168,6 +1168,20 @@ object SystemUI {
         }
     }
 
+    fun disableNotificationGrouping(loadPackageParam: LoadPackageParam) {
+        if (loadPackageParam.packageName != Package.SYSTEMUI) return
+        try {
+            findAndHookMethod(
+                "android.service.notification.StatusBarNotification",
+                loadPackageParam.classLoader,
+                "isGroup",
+                returnConstant(false)
+            )
+        } catch (t: Throwable) {
+            XposedBridge.log(t)
+        }
+    }
+
     fun setCustomCarrierName(loadPackageParam: LoadPackageParam, carrierName: String) {
         if (loadPackageParam.packageName != Package.SYSTEMUI) return
         try {
