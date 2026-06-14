@@ -944,6 +944,7 @@ object SystemUI {
                         textView.apply {
                             isSingleLine = false
                             setLines(2)
+                            ellipsize = null
                             setPadding(paddingLeft, -10, paddingRight, -10)
                             setLineSpacing(0f, 0.8f)
                             val density = context.resources.displayMetrics.density
@@ -956,18 +957,13 @@ object SystemUI {
                 qsShortenDateClass,
                 "notifyTimeChanged",
                 "com.android.systemui.statusbar.policy.QSClockBellSound",
-                object : XC_MethodReplacement() {
-                    var previousDate = ""
-
+                object : XC_MethodHook() {
                     @SuppressLint("SetTextI18n")
-                    override fun replaceHookedMethod(param: MethodHookParam): Any? {
-                        val shortDateText = getObjectField(param.args[0], "ShortDateText") as String
-                        if (shortDateText == previousDate) return null
-                        previousDate = shortDateText
-                        val traditionalChineseDate = TraditionalChineseCalendar.getMonthAndDay()
+                    override fun afterHookedMethod(param: MethodHookParam) {
                         val dateTextView = param.thisObject as TextView
-                        dateTextView.text = "$shortDateText\n$traditionalChineseDate"
-                        return null
+                        val currentText = dateTextView.text
+                        val traditionalChineseDate = TraditionalChineseCalendar.getMonthAndDay()
+                        dateTextView.text = "$currentText\n$traditionalChineseDate"
                     }
                 }
             )
