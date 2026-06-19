@@ -34,7 +34,6 @@ object PhotoRetouching {
                 "SPE_CommonUtil",
                 "getWatermarkBitmap : requiredSize = ",
                 "saveWatermark : canvas shortAxis = ",
-                "saveWatermark : text height = ",
             )
             val saveWatermarkMethod = bridge.findClass {
                 excludePackages(
