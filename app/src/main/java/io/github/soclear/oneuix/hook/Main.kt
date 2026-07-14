@@ -14,7 +14,6 @@ import io.github.soclear.oneuix.hook.util.PreferenceProvider
 import io.github.soclear.oneuix.hook.util.addAssetPath
 
 
-@Suppress("unused")
 class Main : IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHookZygoteInit {
     override fun initZygote(startupParam: StartupParam) {
         modulePath = startupParam.modulePath

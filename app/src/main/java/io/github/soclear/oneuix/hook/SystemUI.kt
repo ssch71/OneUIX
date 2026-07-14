@@ -1180,7 +1180,7 @@ object SystemUI {
         }
         // isGroup()=false lets children show individually, but the group summary
         // (FLAG_GROUP_SUMMARY) leaks through as a standalone entry whose dismissal
-        // clears all of the app's notifications. Filter it out of the shade list
+        // clears all the app's notifications. Filter it out of the shade list
         // while keeping it in NotifCollection so lifecycle events stay consistent.
         try {
             findAndHookMethod(
