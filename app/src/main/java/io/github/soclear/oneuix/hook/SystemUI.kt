@@ -959,13 +959,20 @@ object SystemUI {
                 qsShortenDateClass,
                 "notifyTimeChanged",
                 "com.android.systemui.statusbar.policy.QSClockBellSound",
-                object : XC_MethodHook() {
-                    @SuppressLint("SetTextI18n")
-                    override fun afterHookedMethod(param: MethodHookParam) {
+                object : XC_MethodReplacement() {
+                    var previousDate = ""
+                    var result = ""
+                    override fun replaceHookedMethod(param: MethodHookParam): Any? {
+                        val shortDateText = getObjectField(param.args[0], "ShortDateText") as String
+                        if (shortDateText != previousDate) {
+                            previousDate = shortDateText
+                            result = "$shortDateText\n${TraditionalChineseCalendar.getMonthAndDay()}"
+                        }
                         val dateTextView = param.thisObject as TextView
-                        val currentText = dateTextView.text
-                        val traditionalChineseDate = TraditionalChineseCalendar.getMonthAndDay()
-                        dateTextView.text = "$currentText\n$traditionalChineseDate"
+                        if (dateTextView.text != result) {
+                            dateTextView.text = result
+                        }
+                        return null
                     }
                 }
             )
