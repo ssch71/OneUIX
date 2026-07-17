@@ -88,6 +88,7 @@
 - 禁用截图声音
 - 隐藏音乐应用的实时活动
 - 允许所有旋转角度
+- 自动展开通知
 
 #### 设置
 
@@ -225,6 +226,7 @@
 - Disable screenshot sound
 - Hide ongoing activity for media apps
 - Allow all rotation angles
+- Auto expand notifications
 
 #### Settings
 
