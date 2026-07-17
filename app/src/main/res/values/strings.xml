@@ -31,6 +31,7 @@
     <string name="updateStatusBarClockEverySecond_title">Update status bar clock every second</string>
     <string name="updateStatusBarClockEverySecond_summary">Also sets numbers to monospaced font</string>
     <string name="hideSecureFolderStatusBarIcon_title">Hide Secure Folder status bar icon</string>
+    <string name="restoreBluetoothStatusBarIcon_title">Restore Bluetooth status bar icon</string>
     <string name="physicalEsimAdapterWorkaround_title">Workaround for physical eSIM adapter</string>
     <string name="physicalEsimAdapterWorkaround_summary">Hides the icon for the selected SIM card if there is no service or only emergency calls are available</string>
     <string name="physicalEsimAdapterSimSlot_title">SIM card</string>

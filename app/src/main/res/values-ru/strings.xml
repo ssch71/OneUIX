@@ -31,6 +31,7 @@
     <string name="updateStatusBarClockEverySecond_title">Обновлять часы в строке состояния каждую секунду</string>
     <string name="updateStatusBarClockEverySecond_summary">Также включает моноширинный шрифт для цифр</string>
     <string name="hideSecureFolderStatusBarIcon_title">Скрыть иконку защищенной папки в строке состояния</string>
+    <string name="restoreBluetoothStatusBarIcon_title">Восстановить иконку Bluetooth в строке состояния</string>
     <string name="physicalEsimAdapterWorkaround_title">Обходной путь для физического eSIM-адаптера</string>
     <string name="physicalEsimAdapterWorkaround_summary">Скрывает иконку выбранной SIM-карты, если нет обслуживания сети или доступны только экстренные вызовы</string>
     <string name="physicalEsimAdapterSimSlot_title">SIM-карта</string>

@@ -52,6 +52,7 @@
 - 设置状态栏日期时间格式
 - 状态栏时间每秒更新
 - 隐藏安全文件夹状态栏图标
+- 恢复蓝牙状态栏图标
 - 实体 eSIM 适配器兼容处理
 - 双击状态栏锁屏
 - 修改状态栏最大通知图标数量
@@ -190,6 +191,7 @@
 - Set status bar date and time format
 - Update status bar clock every second
 - Hide Secure Folder status bar icon
+- Restore Bluetooth status bar icon
 - Workaround for physical eSIM adapter
 - Double tap status bar to sleep
 - Modify maximum number of notification icons in status bar

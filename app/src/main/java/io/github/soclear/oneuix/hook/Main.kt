@@ -291,6 +291,10 @@ class Main : IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHoo
                     SystemUI.hideSecureFolderStatusBarIcon(lpparam)
                 }
 
+                if (preference.systemUI.statusBar.restoreBluetoothStatusBarIcon) {
+                    SystemUI.restoreBluetoothStatusBarIcon(lpparam)
+                }
+
                 if (preference.systemUI.statusBar.physicalEsimAdapterWorkaround) {
                     ESIM.workaroundPhysicalEsimAdapter(
                         lpparam,

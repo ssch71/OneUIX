@@ -368,6 +368,14 @@ fun DetailPaneSystemUI(
             }
         )
         SwitchItem(
+            icon = ImageVector.vectorResource(id = R.drawable.bluetooth),
+            title = stringResource(id = R.string.restoreBluetoothStatusBarIcon_title),
+            checked = uiState.statusBar.restoreBluetoothStatusBarIcon,
+            onCheckedChange = {
+                onEvent(SystemUIEvent.StatusBar.RestoreBluetoothStatusBarIcon(it))
+            }
+        )
+        SwitchItem(
             icon = ImageVector.vectorResource(id = R.drawable.sim_card),
             title = stringResource(id = R.string.physicalEsimAdapterWorkaround_title),
             summary = stringResource(id = R.string.physicalEsimAdapterWorkaround_summary),
@@ -948,6 +956,9 @@ sealed interface SystemUIEvent {
         value class HideSecureFolderStatusBarIcon(val value: Boolean) : StatusBar
 
         @JvmInline
+        value class RestoreBluetoothStatusBarIcon(val value: Boolean) : StatusBar
+
+        @JvmInline
         value class PhysicalEsimAdapterWorkaround(val value: Boolean) : StatusBar
 
         @JvmInline
@@ -1262,6 +1273,16 @@ private fun SettingViewModel.onStatusBarEvent(event: SystemUIEvent.StatusBar) {
                     systemUI = preference.systemUI.copy(
                         statusBar = preference.systemUI.statusBar.copy(
                             hideSecureFolderStatusBarIcon = event.value
+                        )
+                    )
+                )
+            }
+
+            is SystemUIEvent.StatusBar.RestoreBluetoothStatusBarIcon -> {
+                preference.copy(
+                    systemUI = preference.systemUI.copy(
+                        statusBar = preference.systemUI.statusBar.copy(
+                            restoreBluetoothStatusBarIcon = event.value
                         )
                     )
                 )

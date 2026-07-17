@@ -31,6 +31,7 @@
     <string name="updateStatusBarClockEverySecond_title">Mettre à jour l\'heure de la barre d\'état chaque seconde</string>
     <string name="updateStatusBarClockEverySecond_summary">Définit également les chiffres avec une police à espacement fixe (monospace)</string>
     <string name="hideSecureFolderStatusBarIcon_title">Masquer l\'icône du dossier sécurisé dans la barre d\'état</string>
+    <string name="restoreBluetoothStatusBarIcon_title">Restaurer l\'icône Bluetooth dans la barre d\'état</string>
     <string name="physicalEsimAdapterWorkaround_title">Contournement pour adaptateur eSIM physique</string>
     <string name="physicalEsimAdapterWorkaround_summary">Masque l\'icône de la carte SIM sélectionnée en l\'absence de service ou lorsque seuls les appels d\'urgence sont disponibles</string>
     <string name="physicalEsimAdapterSimSlot_title">Carte SIM</string>

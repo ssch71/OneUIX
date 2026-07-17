@@ -793,6 +793,30 @@ object SystemUI {
     }
 
 
+    fun restoreBluetoothStatusBarIcon(loadPackageParam: LoadPackageParam) {
+        if (loadPackageParam.packageName != Package.SYSTEMUI) return
+        try {
+            findAndHookMethod(
+                "com.android.systemui.statusbar.phone.ui.StatusBarIconControllerImpl",
+                loadPackageParam.classLoader,
+                "hideBySimplification",
+                "com.android.systemui.statusbar.phone.ui.IconManager",
+                String::class.java,
+                object : XC_MethodHook() {
+                    override fun beforeHookedMethod(param: MethodHookParam) {
+                        val slot = param.args[1] as? String ?: return
+                        if (slot == "bluetooth" || slot == "bluetooth_connected") {
+                            param.result = false
+                        }
+                    }
+                }
+            )
+        } catch (t: Throwable) {
+            XposedBridge.log(t)
+        }
+    }
+
+
     fun setStatusBarMaxNotificationIcons(loadPackageParam: LoadPackageParam, max: Int) {
         if (loadPackageParam.packageName != Package.SYSTEMUI ||
             max < 0 ||
