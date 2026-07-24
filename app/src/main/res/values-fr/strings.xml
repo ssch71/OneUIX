@@ -122,7 +122,8 @@
     <string name="supportAutoPowerOnOff_summary">Paramètres -> Réinitialisation -> Allumage/extinction automatique</string>
     <string name="spoofPhoneStatusAsOfficial_title">Afficher l\'état du téléphone comme officiel</string>
     <string name="spoofPhoneStatusAsOfficial_summary">Paramètres -> À propos du téléphone -> Informations sur l\'état</string>
-    <string name="noAIWatermark_title">Désactiver le filigrane IA de l\'éditeur de photos</string>
+    <string name="noAIWatermark_title">Désactiver le filigrane IA</string>
+    <string name="noAIWatermark_summary">Inclut l\'éditeur de photos et Studio création</string>
     <string name="bypassHealthMonitorCountryCheck_title">Contourner la vérification de pays Samsung Health Monitor</string>
     <string name="bypassHealthMonitorCountryCheck_summary">Utiliser Health Monitor dans les pays non pris en charge</string>
     <string name="useSPenGoogleTranslate_title">Utiliser Google Traduction pour S Pen</string>

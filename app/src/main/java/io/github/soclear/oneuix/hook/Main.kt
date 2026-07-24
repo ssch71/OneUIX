@@ -216,6 +216,12 @@ class Main : IXposedHookLoadPackage, IXposedHookInitPackageResources, IXposedHoo
                 }
             }
 
+            Package.SKETCH_BOOK -> {
+                if (preference.other.noAIWatermark) {
+                    SketchBook.noAIWatermark(lpparam)
+                }
+            }
+
             Package.SM_CN -> {
                 if (preference.settings.spoofPhoneStatusAsOfficial) {
                     SMCN.spoofPhoneStatusAsOfficial(lpparam)

@@ -129,7 +129,7 @@
 - 支持拦截短信
 - 主题和图标试用永不过期
 - 伪装浏览器国家/地区代码为美国
-- 禁用图片编辑器 AI 水印
+- 禁用 AI 水印
 - 绕过 Samsung Health Monitor 国家检查
 - S Pen 使用谷歌翻译
 - 隐藏应用屏幕搜索栏
@@ -268,7 +268,7 @@
 - Support message blocking
 - Never expire theme and icon trials
 - Spoof Browser Region to US
-- Disable Photo Editor AI watermark
+- Disable AI watermark
 - Bypass Samsung Health Monitor country check
 - Use Google Translate for S Pen
 - Hide search bar on app screen

@@ -112,6 +112,7 @@ fun DetailPaneOther(
         SwitchItem(
             icon = ImageVector.vectorResource(id = R.drawable.branding_watermark),
             title = stringResource(id = R.string.noAIWatermark_title),
+            summary = stringResource(id = R.string.noAIWatermark_summary),
             checked = uiState.noAIWatermark,
             onCheckedChange = { onEvent(OtherEvent.NoAIWatermark(it)) }
         )
